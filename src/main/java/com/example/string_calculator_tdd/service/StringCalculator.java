@@ -6,6 +6,6 @@ public class StringCalculator {
 		if(numbers == null || numbers.isEmpty()) {
 			return 0;
 		}
-		throw new UnsupportedOperationException("implementation failed");
+		return Integer.parseInt(numbers);
 	}
 }
