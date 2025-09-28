@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class StringCalculatorTddApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void emptyStringHandling() {
+		assertEquals(0, calc.add(""));
 	}
-
 }
