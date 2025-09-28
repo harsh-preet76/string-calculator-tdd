@@ -14,4 +14,10 @@ class StringCalculatorTddApplicationTests {
 	void emptyStringHandling() {
 		assertEquals(0, calc.add(""));
 	}
+	
+	@Test
+	void singleNumberHandling() {
+		assertEquals(1, calc.add("1"));
+		assertEquals(8, calc.add("8"));
+	}
 }
