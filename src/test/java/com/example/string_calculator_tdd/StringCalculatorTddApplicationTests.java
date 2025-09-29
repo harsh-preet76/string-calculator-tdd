@@ -20,4 +20,9 @@ class StringCalculatorTddApplicationTests {
 		assertEquals(1, calc.add("1"));
 		assertEquals(8, calc.add("8"));
 	}
+	
+	@Test
+	void twoNumersSumHandling() {
+		assertEquals(8, calc.add("3,5"));
+	}
 }
