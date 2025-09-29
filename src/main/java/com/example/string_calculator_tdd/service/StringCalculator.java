@@ -1,6 +1,13 @@
 package com.example.string_calculator_tdd.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
 public class StringCalculator {
+
+	static Logger log = Logger.getLogger(StringCalculator.class.getName());
 
 	public int add(String numbers) {
 
@@ -13,22 +20,36 @@ public class StringCalculator {
 
 		if (numbers.startsWith("//")) {
 			int delimitedEndIndex = numbers.indexOf("\n");
-			System.out.println("Delimiter End: " + delimitedEndIndex);
+			log.info("Delimiter End: " + delimitedEndIndex);
+
 			delimiter = numbers.substring(2, delimitedEndIndex);
-			System.out.println("Delimeter: " + delimiter);  
+			log.info("Delimeter: " + delimiter);
+
 			input = numbers.substring(delimitedEndIndex + 1);
-			System.out.println("Input: " + input);
+			log.info("Input: " + input);
 		}
 
 		String[] parts = input.split("[\n" + delimiter + "]");
 		int sum = 0;
+		List<Integer> negatives = new ArrayList<>();
+
 		for (String part : parts) {
-			System.out.println("Part Values: " + part);
+			log.info("Part Values: " + part);
 			if (!part.isEmpty()) {
-				sum += Integer.parseInt(part);
+				int value = Integer.parseInt(part);
+				if (value < 0) {
+					negatives.add(value);
+				}
+				sum += value;
 			}
 		}
-		System.out.println("Sum Values: " + sum);
+
+		if (!negatives.isEmpty()) {
+			throw new IllegalArgumentException("Negative numbers are not allowed: "
+					+ negatives.stream().map(String::valueOf).collect(Collectors.joining(",")));
+		}
+
+		log.info("Sum Values: " + sum);
 		return sum;
 	}
 

@@ -35,6 +35,6 @@ class StringCalculatorTddApplicationTests {
 	@Test
 	void negativeNumbersThrowExceptionHandling() {
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> { calc.add("1,-2,3,-4"); });
-		assertEquals("Negative numbers are not allowed: ", exception.getMessage());
+		assertEquals("Negative numbers are not allowed: -2,-4", exception.getMessage());
 	}
 }
