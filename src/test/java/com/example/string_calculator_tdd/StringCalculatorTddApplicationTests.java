@@ -25,4 +25,9 @@ class StringCalculatorTddApplicationTests {
 	void twoNumersSumHandling() {
 		assertEquals(8, calc.add("3,5"));
 	}
+	
+	@Test
+	void customDelimitedMunbers() {
+		assertEquals(9, calc.add("//;\n2;7"));
+	}
 }
