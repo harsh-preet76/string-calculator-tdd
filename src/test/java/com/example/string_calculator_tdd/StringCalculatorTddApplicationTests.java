@@ -1,6 +1,7 @@
 package com.example.string_calculator_tdd;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import com.example.string_calculator_tdd.service.StringCalculator;
@@ -27,7 +28,13 @@ class StringCalculatorTddApplicationTests {
 	}
 	
 	@Test
-	void customDelimitedMunbers() {
+	void customDelimitedNumbersHandling() {
 		assertEquals(9, calc.add("//;\n2;7"));
+	}
+	
+	@Test
+	void negativeNumbersThrowExceptionHandling() {
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> { calc.add("1,-2,3,-4"); });
+		assertEquals("Negative numbers are not allowed: ", exception.getMessage());
 	}
 }
